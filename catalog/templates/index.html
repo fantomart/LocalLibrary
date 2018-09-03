@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} <title>Home page</title> {% endblock %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+
+  <p>Добро пожаловать в <em>LocalLibrary</em>, тестовую библеотеку, созданную вечерами.</p>
+
+<h2>Динамическое содержимое</h2>
+
+  <p>Библиотека содержит следующее число записей:</p>
+  <ul>
+    <li><strong>Книги:</strong> {{ num_books }}</li>
+    <li><strong>Экземпляры:</strong> {{ num_instances }}</li>
+    <li><strong>Доступные экзепляры:</strong> {{ num_instances_available }}</li>
+    <li><strong>Авторы:</strong> {{ num_authors }}</li>
+    <li><strong>Жанры:</strong> {{ num_genres }}</li>
+    <li><strong>Книг о Гарри Поттере:</strong> {{ num_books_about_harry_potter }}</li>
+  </ul>
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

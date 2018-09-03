@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_staff %}
+        <p><a class="btn btn-secondary text-center float-right ml-2" href="{% url 'author_delete' author.pk %}?next=/catalog/authors/">Удалить</a></p>
+        <p><a class="btn btn-secondary text-center float-right" href="{% url 'author_update' author.pk %}">Редактировать</a></p>
+    {% endif %}
+    <h1>Автор: {{ author }}</h1>
+
+  <p>{{ author.date_of_birth }} - {% if author.date_of_death %}{{ author.date_of_death }}{% endif %}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Книги</h4>
+
+    {% for book in author.book_set.all %}
+        <hr>
+        <p> <strong><a href="{% url 'book-detail' book.pk %}">{{ book.title }}</a> ({{ book.bookinstance_set.count }}) </strong></p>
+        <p>{{ book.summary }}</p>
+    {% endfor %}
+  </div>
+
+{% endblock %}

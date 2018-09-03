@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_staff %}
+        <p><a class="btn btn-secondary text-center float-right" href="{% url 'author_create'%}?next={{request.path}}">Добавить автора</a></p>
+    {% endif %}
+    <h1>Список авторов</h1>
+
+    {% if author_list %}
+    <ul>
+
+      {% for author in author_list %}
+      <li>
+        <a href="{{ author.get_absolute_url }}">{{ author }}</a> ({{author.date_of_birth}} - {% if author.date_of_death %}{{ author.date_of_death }}{% endif %})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>В библиотеке нет авторов.</p>
+    {% endif %}
+{% endblock %}
